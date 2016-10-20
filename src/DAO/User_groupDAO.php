@@ -79,7 +79,7 @@ class User_groupDAO extends DAO {
     /**
      * Removes a user_group from the database.
      *
-     * @param @param integer $id The user id.
+     * @param @param integer $id The id_user_group.
      */
     public function delete($id) {
         $this->getDb()->delete('user_group', array('id_user_group' => $id));
