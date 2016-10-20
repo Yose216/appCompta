@@ -1,8 +1,8 @@
-# appCompta
+# AppCompta
 
 The back-end of an accounting application, develop with the framework silex. This application allows for easy book-keeping with fiends family and colleague.
 
-## Function
+## Functions
 
 + Create, edit and delete user.
 + Create, edit and delete user group.
