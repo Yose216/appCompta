@@ -44,7 +44,7 @@ class User_groupDAO extends DAO {
     /**
      * Creates a User_group object based on a DB row.
      *
-     * @param array $row The DB row containing User data.
+     * @param array $row The DB row containing User_group data.
      * @return \appCompta\Domain\User_group
      */
     protected function buildDomainObject($row) {
