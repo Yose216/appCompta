@@ -1,0 +1,4 @@
+[2016-10-21 09:54:48] appCompta.INFO: Matched route "users_api". {"route_parameters":{"_controller":"appCompta\\Controller\\UserController::getAllUsers","_route":"users_api"},"request_uri":"http://appcompta/api/users"} []
+[2016-10-21 09:54:48] appCompta.INFO: > GET /api/users [] []
+[2016-10-21 09:54:48] appCompta.CRITICAL: Symfony\Component\Debug\Exception\ContextErrorException: Notice: Undefined offset: 1 (uncaught exception) at /home/pcapprenant17/Documents/appCompta/src/Controller/UserController.php line 31 {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\ContextErrorException(code: 0): Notice: Undefined offset: 1 at /home/pcapprenant17/Documents/appCompta/src/Controller/UserController.php:31)"} []
+[2016-10-21 09:54:48] appCompta.INFO: < 500 [] []

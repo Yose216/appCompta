@@ -9,6 +9,12 @@ ExceptionHandler::register();
 
 $app->register(new Silex\Provider\DoctrineServiceProvider());
 
+$app->register(new Silex\Provider\MonologServiceProvider(), array(
+    'monolog.logfile' => __DIR__.'/../var/logs/appCompta.log',
+    'monolog.name' => 'appCompta',
+    'monolog.level' => $app['monolog.level']
+));
+
 $app['dao.user'] = $app->share(function ($app) {
 	return new appCompta\DAO\UserDAO($app['db']);
 });
