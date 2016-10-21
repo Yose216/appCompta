@@ -21,19 +21,15 @@ class UserController {
 			if(! array_key_exists($obj->getUserid(), $user2GroupArray)){
 				$user2GroupArray[$obj->getUserid()] = [];
 			}
-
 			array_push($user2GroupArray[$obj->getUserid()], $obj->getIdusergroup());
-			var_dump($obj->getUserid());
-
 		}
-		print_r($user2GroupArray);
 
 		foreach ($users as $user) {
 			$responseData[] = array(
 				'Id' => $user->getId(),
 				'username' => $user->getUsername(),
 				'usercolor' => $user->getUsercolor(),
-				'usergroup' => $user2GroupArray[$user->getId()]
+				'usergroup' => implode($user2GroupArray[$user->getId()])
 			);
 		}
 		return $app->json($responseData);

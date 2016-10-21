@@ -13,7 +13,6 @@ class Users_has_user_groupDAO extends DAO {
         // Convert query result to an array of domain objects
         $entities = [];
         foreach ($result as $row) {
-//            $entities =
 			array_push($entities, $this->buildDomainObject($row));
         }
         return $entities;
