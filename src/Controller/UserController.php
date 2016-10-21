@@ -16,13 +16,18 @@ class UserController {
 		/* Converts $user_has_group to an array $user2GroupArray having structure : 
 		*	[UserId => [groupId], UserID2 => [groupeId2]]
 		*/
-		$user2GroupArray=[];
+		$user2GroupArray= [];
 		foreach($user_has_group as $obj){
 			if(! array_key_exists($obj->getUserid(), $user2GroupArray)){
 				$user2GroupArray[$obj->getUserid()] = [];
 			}
+
 			array_push($user2GroupArray[$obj->getUserid()], $obj->getIdusergroup());
+			var_dump($obj->getUserid());
+
 		}
+		print_r($user2GroupArray);
+
 		foreach ($users as $user) {
 			$responseData[] = array(
 				'Id' => $user->getId(),

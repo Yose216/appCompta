@@ -7,14 +7,14 @@ use appCompta\Domain\Users_has_user_group;
 class Users_has_user_groupDAO extends DAO {
 	
 	public function findAll() {
-        $sql = "select * from users_has_user_group order by id_user_group";
+        $sql = "select * from users_has_user_group";
         $result = $this->getDb()->fetchAll($sql);
 
         // Convert query result to an array of domain objects
-        $entities = array();
+        $entities = [];
         foreach ($result as $row) {
-            $id = $row['id_user_group'];
-            $entities[$id] = $this->buildDomainObject($row);
+//            $entities =
+			array_push($entities, $this->buildDomainObject($row));
         }
         return $entities;
     }

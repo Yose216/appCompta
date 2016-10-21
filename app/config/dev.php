@@ -16,3 +16,6 @@ $app['debug'] = true;
 
 // define log level
 $app['monolog.level'] = 'INFO';
+
+//Memo pour le debug
+//$app['monolog']->addError($entities);
