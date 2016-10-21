@@ -29,7 +29,7 @@ class UserController {
 				'Id' => $user->getId(),
 				'username' => $user->getUsername(),
 				'usercolor' => $user->getUsercolor(),
-				'usergroup' => implode($user2GroupArray[$user->getId()])
+				'usergroup' => implode(",", $user2GroupArray[$user->getId()])
 			);
 		}
 		return $app->json($responseData);
@@ -38,14 +38,24 @@ class UserController {
 	// Get on user
 	public function getOneUser($id, Request $request, Application $app) {
 		$user = $app['dao.user']->find($id);
+		$user_has_group = $app['dao.user_has_user_group']->findAll();
 		if (!isset($user)) {
 			$app->abort(404, 'User not exist');
+		}
+
+		$user2GroupArray= [];
+		foreach($user_has_group as $obj){
+			if(! array_key_exists($obj->getUserid(), $user2GroupArray)){
+				$user2GroupArray[$obj->getUserid()] = [];
+			}
+			array_push($user2GroupArray[$obj->getUserid()], $obj->getIdusergroup());
 		}
 
 		$responseData = array(
 			'Id' => $user->getId(),
 			'username' => $user->getUsername(),
-			'usercolor' => $user->getUsercolor()
+			'usercolor' => $user->getUsercolor(),
+			'usergroup' => implode(",", $user2GroupArray[$user->getId()])
 		);
 		return $app->json($responseData);
 	}
