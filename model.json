@@ -6,8 +6,7 @@ Add user
 	"userrole": "",
 	"userpwd": "",
 	"usersalt": "",
-	"userid": "",
-	"idusergroup"
+	"idusergroup": ""
 }
 
 Add usergroup
@@ -17,4 +16,5 @@ Add usergroup
 }
 
 add error
-//$app['monolog']->addError(TO DO);
+
+$app['monolog']->addError(/* TO DO */);
