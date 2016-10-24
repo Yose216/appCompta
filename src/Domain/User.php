@@ -49,8 +49,6 @@ class User implements UserInterface
      */
     private $salt;
 	
-//	private $groups;
-	
 	public function getId() {
         return $this->id;
     }
@@ -108,14 +106,6 @@ class User implements UserInterface
     public function setSalt($salt) {
         $this->salt = $salt;
     }
-	
-//	public function getGroup() { 
-//		return $this->groups; 
-//	}
-//	
-//	public function setGroup($groups) {
-//		return $this->groups;
-//	}
 	
 	public function eraseCredentials() {
         // Nothing to do here

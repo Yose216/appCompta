@@ -62,6 +62,7 @@ class UserController {
 	
 	// Create user
 	public function createUser(Request $request, Application $app) {
+		var_dump($request->request->all());
 		if (!$request->request->has('username')) {
 			return $app->json('Missing parameter: username', 400);
 		}
@@ -76,18 +77,19 @@ class UserController {
 		$user->setPassword($request->request->get('userpwd'));
 		$user->setSalt($request->request->get('usersalt'));
 		$user = $app['dao.user']->save($user);
-		
-		$user_has_group = new Users_has_user_group();
-		$user_has_group->setUserid($user->getId());
-		$user_has_group->setIdusergroup();
-		$app['dao.user_has_user_group']->save($user_has_group);
 
+//		$user_has_group = new Users_has_user_group();
+//		$user_has_group->setUserid($user->getId());
+//		$user_has_group->setIdusergroup();
+//		$app['dao.user_has_user_group']->save($user_has_group);
+//		'usergroup' => $user_has_group->getIdusergroup()
+//		'usergroup' => $user_has_group->getIdusergroup()
+		
 		$responseData = array(
 			'Id' => $user->getId(),
 			'username' => $user->getUsername(),
 			'usercolor' => $user->getUsercolor(),
-			'userrole' => $user->getRole(),
-			'usergroup' => $user_has_group->getIdusergroup()
+			'userrole' => $user->getRole()
 		);
 
 		return $app->json($responseData, 201);
