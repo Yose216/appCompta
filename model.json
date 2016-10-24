@@ -1,0 +1,20 @@
+Add user
+
+{
+	"username": "",
+	"usercolor": "",
+	"userrole": "",
+	"userpwd": "",
+	"usersalt": "",
+	"userid": "",
+	"idusergroup"
+}
+
+Add usergroup
+
+{
+	"groupname": ""
+}
+
+add error
+//$app['monolog']->addError(TO DO);

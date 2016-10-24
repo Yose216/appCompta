@@ -29,7 +29,7 @@ class UserController {
 				'Id' => $user->getId(),
 				'username' => $user->getUsername(),
 				'usercolor' => $user->getUsercolor(),
-				'usergroup' => implode(",", $user2GroupArray[$user->getId()])
+				'usergroup' => implode(", ", $user2GroupArray[$user->getId()])
 			);
 		}
 		return $app->json($responseData);
@@ -55,14 +55,13 @@ class UserController {
 			'Id' => $user->getId(),
 			'username' => $user->getUsername(),
 			'usercolor' => $user->getUsercolor(),
-			'usergroup' => implode(",", $user2GroupArray[$user->getId()])
+			'usergroup' => implode(", ", $user2GroupArray[$user->getId()])
 		);
 		return $app->json($responseData);
 	}
 	
 	// Create user
 	public function createUser(Request $request, Application $app) {
-		var_dump($request->request->all());
 		if (!$request->request->has('username')) {
 			return $app->json('Missing parameter: username', 400);
 		}
@@ -70,7 +69,7 @@ class UserController {
 			return $app->json('Missing parameter: usercolor', 400);
 		}
 
-		$user = new User();
+		$user = new User(); //set the parametre for the new user
 		$user->setUsername($request->request->get('username'));
 		$user->setUsercolor($request->request->get('usercolor'));
 		$user->setRole($request->request->get('userrole'));
@@ -78,18 +77,19 @@ class UserController {
 		$user->setSalt($request->request->get('usersalt'));
 		$user = $app['dao.user']->save($user);
 
-//		$user_has_group = new Users_has_user_group();
-//		$user_has_group->setUserid($user->getId());
-//		$user_has_group->setIdusergroup();
-//		$app['dao.user_has_user_group']->save($user_has_group);
-//		'usergroup' => $user_has_group->getIdusergroup()
-//		'usergroup' => $user_has_group->getIdusergroup()
+		//set the parametre for the new Users_has_user_group
+		$user_has_group = new Users_has_user_group();
+		$user_has_group->setUserid($user->getId());
+		$user_has_group->setIdusergroup($request->request->get('idusergroup'));
+		$app['dao.user_has_user_group']->save($user_has_group);
 		
+		// Response of the create request
 		$responseData = array(
 			'Id' => $user->getId(),
 			'username' => $user->getUsername(),
 			'usercolor' => $user->getUsercolor(),
-			'userrole' => $user->getRole()
+			'userrole' => $user->getRole(),
+			'usergroup' => $user_has_group->getIdusergroup()
 		);
 
 		return $app->json($responseData, 201);
@@ -98,6 +98,7 @@ class UserController {
 	// Edit user
 	public function editUser($id, Request $request, Application $app) {
 		$user = $app['dao.user']->find($id);
+		$user_has_group = $app['dao.user_has_user_group']->findAll();
 
 		$user->setUsername($request->request->get('username'));
 		$user->setUsercolor($request->request->get('usercolor'));
@@ -105,11 +106,16 @@ class UserController {
 		$user->setPassword($request->request->get('userpwd'));
 		$app['dao.user']->save($user);
 
+		$user_has_group->setUserid($user->getId());
+		$user_has_group->setIdusergroup($request->request->get('idusergroup'));
+		$app['dao.user_has_user_group']->save($user_has_group);
+
 		$responseData = array(
 			'Id' => $user->getId(),
 			'username' => $user->getUsername(),
 			'usercolor' => $user->getUsercolor(),
-			'userrole' => $user->getRole()
+			'userrole' => $user->getRole(),
+			'idusergroup' => $user_has_group->getIdusergroup()
 		);
 
 		return $app->json($responseData, 202);

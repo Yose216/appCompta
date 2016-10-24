@@ -15,7 +15,7 @@ $app['db.options'] = array(
 $app['debug'] = true;
 
 // define log level
-$app['monolog.level'] = 'INFO';
+$app['monolog.level'] = 'DEBUG';
 
 //Memo pour le debug
 //$app['monolog']->addError($entities);
