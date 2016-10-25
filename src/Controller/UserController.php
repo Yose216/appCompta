@@ -69,7 +69,7 @@ class UserController {
 			return $app->json('Missing parameter: usercolor', 400);
 		}
 
-		$user = new User(); //set the parametre for the new user
+		$user = new User(); // Set the parametre for the new user
 		$user->setUsername($request->request->get('username'));
 		$user->setUsercolor($request->request->get('usercolor'));
 		$user->setRole($request->request->get('userrole'));
@@ -77,7 +77,7 @@ class UserController {
 		$user->setSalt($request->request->get('usersalt'));
 		$user = $app['dao.user']->save($user);
 
-		//set the parametre for the new Users_has_user_group
+		// Set the parametre for the new Users_has_user_group
 		$user_has_group = new Users_has_user_group();
 		$user_has_group->setUserid($user->getId());
 		$user_has_group->setIdusergroup($request->request->get('idusergroup'));
@@ -106,7 +106,7 @@ class UserController {
 		$user->setPassword($request->request->get('userpwd'));
 		$app['dao.user']->save($user);
 
-		$user_has_group->setUserid($user->getId());
+		$user_has_group->setUserid($request->request->get('userid'));
 		$user_has_group->setIdusergroup($request->request->get('idusergroup'));
 		$app['dao.user_has_user_group']->save($user_has_group);
 
