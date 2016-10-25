@@ -75,12 +75,14 @@ class UserController {
 		$user->setRole($request->request->get('userrole'));
 		$user->setPassword($request->request->get('userpwd'));
 		$user->setSalt($request->request->get('usersalt'));
-		$user = $app['dao.user']->save($user);
 
 		// Set the parametre for the new Users_has_user_group
 		$user_has_group = new Users_has_user_group();
 		$user_has_group->setUserid($user->getId());
 		$user_has_group->setIdusergroup($request->request->get('idusergroup'));
+
+		//Save the parametre
+		$user = $app['dao.user']->save($user);
 		$app['dao.user_has_user_group']->save($user_has_group);
 		
 		// Response of the create request
@@ -104,10 +106,17 @@ class UserController {
 		$user->setUsercolor($request->request->get('usercolor'));
 		$user->setRole($request->request->get('userrole'));
 		$user->setPassword($request->request->get('userpwd'));
-		$app['dao.user']->save($user);
 
-		$user_has_group->setUserid($request->request->get('userid'));
+		// for user_has_group
+			//CHECK IF ALREADY EXISTS
+		//end for
+		/* if not exists
+			--> create */
+		$user_has_group = new Users_has_user_group();
+		$user_has_group->setUserid($user->getId());
 		$user_has_group->setIdusergroup($request->request->get('idusergroup'));
+
+		$app['dao.user']->save($user);
 		$app['dao.user_has_user_group']->save($user_has_group);
 
 		$responseData = array(

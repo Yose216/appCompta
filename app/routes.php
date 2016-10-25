@@ -10,7 +10,7 @@ $app->get('/api/user/{id}', "appCompta\Controller\UserController::getOneUser")->
 $app->post('/api/users/create', "appCompta\Controller\UserController::createUser")->bind('user_create');
 
 // Edit user
-$app->put('/api/user/edit/{id}', "appCompta\Controller\UserController::editUser")->bind('user_edit');
+$app->post('/api/users/edit/{id}', "appCompta\Controller\UserController::editUser")->bind('user_edit');
 
 // Delete user
 $app->delete('/api/user/delete/{id}', "appCompta\Controller\UserController::deleteUser")->bind('user_delete');

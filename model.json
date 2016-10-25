@@ -15,6 +15,15 @@ Add usergroup
 	"groupname": ""
 }
 
+Edit user
+{
+	"username": "",
+	"usercolor": "",
+	"userrole": "",
+	"userpwd": "",
+	"idusergroup": ""
+}
+
 add error
 
 $app['monolog']->addError(/* TO DO */);
