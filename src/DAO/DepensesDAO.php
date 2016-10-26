@@ -50,7 +50,7 @@ class DepensesDAO extends DAO {
 
         if ($depenses->getIddepenses()) {
             // The user has already been saved : update it
-            $this->getDb()->update('depenses', $depenseData, array('depenses' => $depenses->getIddepenses()));
+            $this->getDb()->update('depenses', $depenseData, array('id_depenses' => $depenses->getIddepenses()));
         } else {
             // The user has never been saved : insert it
             $this->getDb()->insert('depenses', $depenseData);

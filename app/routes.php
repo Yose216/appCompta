@@ -40,7 +40,7 @@ $app->get('/api/depenses/{id}', "appCompta\Controller\DepensesController::getOne
 $app->post('/api/depense/create', "appCompta\Controller\DepensesController::createDepenses")->bind('depenses_create');
 
 // Edit depense
-//$app->put('/api/usersgroup/edit/{id}', "appCompta\Controller\User_groupController::editUserGroup")->bind('usersgroup_edit');
+$app->put('/api/depense/edit/{id}', "appCompta\Controller\DepensesController::editDepenses")->bind('usersgroup_edit');
 
 // Delete depense
 $app->delete('/api/depense/delete/{id}', "appCompta\Controller\DepensesController::deleteDepenses")->bind('usersgroup_delete');
