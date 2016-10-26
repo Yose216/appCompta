@@ -84,4 +84,10 @@ class DepensesController {
 
 		return $app->json($responseData, 201);
 	}
+
+	// Delete
+	public function deleteDepenses($id, Request $request, Application $app) {
+		$app['dao.depenses']->delete($id);
+		return $app->json('No content', 204);
+	}
 }

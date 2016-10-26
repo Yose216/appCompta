@@ -43,4 +43,4 @@ $app->post('/api/depense/create', "appCompta\Controller\DepensesController::crea
 //$app->put('/api/usersgroup/edit/{id}', "appCompta\Controller\User_groupController::editUserGroup")->bind('usersgroup_edit');
 
 // Delete depense
-//$app->delete('/api/usersgroup/delete/{id}', "appCompta\Controller\User_groupController::deleteUserGroup")->bind('usersgroup_delete');
+$app->delete('/api/depense/delete/{id}', "appCompta\Controller\DepensesController::deleteDepenses")->bind('usersgroup_delete');

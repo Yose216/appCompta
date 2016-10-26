@@ -28,7 +28,7 @@ Add depense
 {
 	"montant": "",
 	"payeurs": "",
-	"date": "",
+	"date": "0000-00-00 00:00:00",
 	"nombre concerner": "",
 	"description": ""
 }
