@@ -31,13 +31,13 @@ $app->put('/api/usersgroup/edit/{id}', "appCompta\Controller\User_groupControlle
 $app->delete('/api/usersgroup/delete/{id}', "appCompta\Controller\User_groupController::deleteUserGroup")->bind('usersgroup_delete');
 
 // Get all depense
-$app->get('/api/depense', "appCompta\Controller\DepenseController::getAllDepense")->bind('depense_api');
+$app->get('/api/depense', "appCompta\Controller\DepensesController::getAllDepenses")->bind('depense_api');
 
 // Get one depense
-//$app->get('/api/usergroup/{id}', "appCompta\Controller\User_groupController::getOneUserGroup")->bind('usergroup_api');
+$app->get('/api/depenses/{id}', "appCompta\Controller\DepensesController::getOneDepenses")->bind('depenses_api');
 
 // Create depense
-//$app->post('/api/usersgroup/create', "appCompta\Controller\User_groupController::createUserGroup")->bind('usersgroup_create');
+$app->post('/api/usersgroup/create', "appCompta\Controller\DepensesController::createDepenses")->bind('depenses_create');
 
 // Edit depense
 //$app->put('/api/usersgroup/edit/{id}', "appCompta\Controller\User_groupController::editUserGroup")->bind('usersgroup_edit');

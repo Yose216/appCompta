@@ -11,7 +11,7 @@ class Depenses {
 	private $description;
 	
 	public function getIddepenses() {
-		return $this->$id_depenses;
+		return $this->id_depenses;
 	}
 
 	public function setIddepenses($id_depenses) {
@@ -19,7 +19,7 @@ class Depenses {
 	}
 
 	public function getMontant() {
-		return $this->$montant;
+		return $this->montant;
 	}
 
 	public function setMontant($montant) {
@@ -27,7 +27,7 @@ class Depenses {
 	}
 
 	public function getPayeurs() {
-		return $this->$payeurs;
+		return $this->payeurs;
 	}
 
 	public function setPayeurs($payeurs) {

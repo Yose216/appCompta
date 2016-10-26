@@ -27,6 +27,10 @@ $app['dao.user_has_user_group'] = $app->share(function ($app) {
 	return new appCompta\DAO\Users_has_user_groupDAO($app['db']);
 });
 
+$app['dao.depenses'] = $app->share(function ($app) {
+	return new appCompta\DAO\DepensesDAO($app['db']);
+});
+
 // Register JSON data decoder for JSON requests
 $app->before(function (Request $request) {
 	if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
