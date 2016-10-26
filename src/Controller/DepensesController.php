@@ -4,19 +4,22 @@ namespace appCompta\Controller;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use appCompta\Domain\Depenses;
+use appCompta\Domain\Concernes;
 
 class DepensesController {
 	public function getAllDepenses(Application $app) {
 		$depenses = $app['dao.depenses']->findAll();
+		$concernes = $app['dao.concernes']->findAll();
 		$responseData = array();
-//		$user2GroupArray= [];
-//		foreach($user_has_group as $obj){
-//			if(! array_key_exists($obj->getIdusergroup(), $user2GroupArray)){
-//				$user2GroupArray[$obj->getIdusergroup()] = [];
-//			}
-//			array_push($user2GroupArray[$obj->getIdusergroup()], $obj->getUserid());
-//		}
-
+		$concernesArray= [];
+		foreach($concernes as $obj){
+			if(! array_key_exists($obj->getIddepenses(), $concernesArray)){
+				$concernesArray[$obj->getIddepenses()] = [];
+			}
+			array_push($concernesArray[$obj->getIddepenses()], $obj->getIdusers());
+		}
+		var_dump($concernes);
+		print_r($concernesArray);
 		foreach ($depenses as $depense) {
 			$responseData[] = array(
 				'Id' => $depense->getIddepenses(),
@@ -24,7 +27,8 @@ class DepensesController {
 				'payeurs' => $depense->getPayeurs(),
 				'date' => $depense->getDatedep()->format('d-m-Y'),
 				'nombre concerner' => $depense->getNbconcerne(),
-				'description' => $depense->getDescription()
+				'description' => $depense->getDescription(),
+				'concernes' => implode(", ", $concernesArray[$depense->getIddepenses()])
 			);
 		}
 		return $app->json($responseData);
