@@ -24,6 +24,15 @@ Edit user
 	"idusergroup": ""
 }
 
+Add depense
+{
+	"montant": "",
+	"payeurs": "",
+	"date": "",
+	"nombre concerner": "",
+	"description": ""
+}
+
 add error
 
 $app['monolog']->addError(/* TO DO */);

@@ -37,7 +37,7 @@ $app->get('/api/depense', "appCompta\Controller\DepensesController::getAllDepens
 $app->get('/api/depenses/{id}', "appCompta\Controller\DepensesController::getOneDepenses")->bind('depenses_api');
 
 // Create depense
-$app->post('/api/usersgroup/create', "appCompta\Controller\DepensesController::createDepenses")->bind('depenses_create');
+$app->post('/api/depense/create', "appCompta\Controller\DepensesController::createDepenses")->bind('depenses_create');
 
 // Edit depense
 //$app->put('/api/usersgroup/edit/{id}', "appCompta\Controller\User_groupController::editUserGroup")->bind('usersgroup_edit');
