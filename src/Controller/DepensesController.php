@@ -18,17 +18,16 @@ class DepensesController {
 			}
 			array_push($concernesArray[$obj->getIddepenses()], $obj->getIdusers());
 		}
-		var_dump($concernes);
-		print_r($concernesArray);
+
 		foreach ($depenses as $depense) {
 			$responseData[] = array(
 				'Id' => $depense->getIddepenses(),
 				'montant' => $depense->getMontant(),
+				'concernes' => implode(", ", $concernesArray[$depense->getIddepenses()]),
 				'payeurs' => $depense->getPayeurs(),
 				'date' => $depense->getDatedep()->format('d-m-Y'),
 				'nombre concerner' => $depense->getNbconcerne(),
-				'description' => $depense->getDescription(),
-				'concernes' => implode(", ", $concernesArray[$depense->getIddepenses()])
+				'description' => $depense->getDescription()
 			);
 		}
 		return $app->json($responseData);
@@ -37,21 +36,23 @@ class DepensesController {
 	// Get one group
 	public function getOneDepenses($id, Request $request, Application $app) {
 		$depenses = $app['dao.depenses']->find($id);
+		$concernes = $app['dao.concernes']->findAll();
 		if (!isset($depenses)) {
 			$app->abort(404, 'User not exist');
 		}
 
-//		$user2GroupArray= [];
-//		foreach($user_has_group as $obj){
-//			if(! array_key_exists($obj->getIdusergroup(), $user2GroupArray)){
-//				$user2GroupArray[$obj->getIdusergroup()] = [];
-//			}
-//			array_push($user2GroupArray[$obj->getIdusergroup()], $obj->getUserid());
-//		}
+		$concernesArray= [];
+		foreach($concernes as $obj){
+			if(! array_key_exists($obj->getIddepenses(), $concernesArray)){
+				$concernesArray[$obj->getIddepenses()] = [];
+			}
+			array_push($concernesArray[$obj->getIddepenses()], $obj->getIdusers());
+		}
 
 		$responseData = array(
 			'Id' => $depenses->getIddepenses(),
 			'montant' => $depenses->getMontant(),
+			'concernes' => implode(", ", $concernesArray[$depenses->getIddepenses()]),
 			'payeurs' => $depenses->getPayeurs(),
 			'date' => $depenses->getDatedep()->format('d-m-Y'),
 			'nombre concerner' => $depenses->getNbconcerne(),
