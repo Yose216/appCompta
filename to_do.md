@@ -5,7 +5,6 @@
 	
 + #### Depense/concerne
 	+ edit plus pousse
-	+ delete des concerne
 	
 + #### Login admin
 	+ Tout reste a faire :/

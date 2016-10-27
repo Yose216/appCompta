@@ -38,4 +38,8 @@ class ConcernesDAO extends DAO {
         // Delete the user
         $this->getDb()->delete('concernes', array('id_users' => $id));
     }
+	public function deleteIdDepenses($id) {
+        // Delete the depenses
+        $this->getDb()->delete('concernes', array('id_depenses' => $id));
+    }
 }

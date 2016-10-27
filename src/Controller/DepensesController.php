@@ -128,6 +128,7 @@ class DepensesController {
 
 	// Delete
 	public function deleteDepenses($id, Request $request, Application $app) {
+		$app['dao.concernes']->deleteIdDepenses($id);
 		$app['dao.depenses']->delete($id);
 		return $app->json('No content', 204);
 	}
