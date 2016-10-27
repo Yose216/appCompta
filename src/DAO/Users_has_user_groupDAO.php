@@ -39,4 +39,9 @@ class Users_has_user_groupDAO extends DAO {
         $this->getDb()->delete('users_has_user_group', array('user_id' => $id));
     }
 
+	public function deleteUserGroup($id) {
+        // Delete the user
+        $this->getDb()->delete('users_has_user_group', array('id_user_group' => $id));
+    }
+
 }

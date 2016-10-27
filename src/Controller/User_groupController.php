@@ -92,8 +92,15 @@ class User_groupController {
 	
 	// Delete user group
 	public function deleteUserGroup($id, Request $request, Application $app) {
+		$app['dao.user_has_user_group']->deleteUserGroup($id);
 		$app['dao.user_group']->delete($id);
 		
+		return $app->json('No content', 204);
+	}
+
+	public function deleteUserOfGroup($id, Request $request, Application $app) {
+		$app['dao.user_has_user_group']->delete($id);
+
 		return $app->json('No content', 204);
 	}
 }

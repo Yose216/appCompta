@@ -15,6 +15,9 @@ $app->post('/api/users/edit/{id}', "appCompta\Controller\UserController::editUse
 // Delete user
 $app->delete('/api/user/delete/{id}', "appCompta\Controller\UserController::deleteUser")->bind('user_delete');
 
+// Delete user of group
+$app->delete('/api/user/group/delete/{id}', "appCompta\Controller\User_groupController::deleteUserOfGroup")->bind('userOfgroup_delete');
+
 // Get all groups
 $app->get('/api/usersgroup', "appCompta\Controller\User_groupController::getAllGroup")->bind('usersgroup_api');
 
@@ -43,4 +46,7 @@ $app->post('/api/depense/create', "appCompta\Controller\DepensesController::crea
 $app->put('/api/depense/edit/{id}', "appCompta\Controller\DepensesController::editDepenses")->bind('usersgroup_edit');
 
 // Delete depense
-$app->delete('/api/depense/delete/{id}', "appCompta\Controller\DepensesController::deleteDepenses")->bind('usersgroup_delete');
+$app->delete('/api/depense/delete/{id}', "appCompta\Controller\DepensesController::deleteDepenses")->bind('depense_delete');
+
+// Delete concernes
+$app->delete('/api/depense/concernes/delete/{id}', "appCompta\Controller\DepensesController::deleteConcernes")->bind('concernes_delete');
