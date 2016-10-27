@@ -1,5 +1,10 @@
 <?php
 
+/*********************************************************************************************************
+************************** Get, create, edit and delete for user *****************************************
+**************************                                       *****************************************
+*********************************************************************************************************/
+
 // Get all users
 $app->get('/api/users', "appCompta\Controller\UserController::getAllUsers")->bind('users_api');
 
@@ -15,8 +20,10 @@ $app->post('/api/users/edit/{id}', "appCompta\Controller\UserController::editUse
 // Delete user
 $app->delete('/api/user/delete/{id}', "appCompta\Controller\UserController::deleteUser")->bind('user_delete');
 
-// Delete user of group
-$app->delete('/api/user/group/delete/{id}', "appCompta\Controller\User_groupController::deleteUserOfGroup")->bind('userOfgroup_delete');
+/*********************************************************************************************************
+************************** Get, create, edit and delete for group ****************************************
+**************************                                        ****************************************
+*********************************************************************************************************/
 
 // Get all groups
 $app->get('/api/usersgroup', "appCompta\Controller\User_groupController::getAllGroup")->bind('usersgroup_api');
@@ -33,6 +40,14 @@ $app->put('/api/usersgroup/edit/{id}', "appCompta\Controller\User_groupControlle
 // Delete group
 $app->delete('/api/usersgroup/delete/{id}', "appCompta\Controller\User_groupController::deleteUserGroup")->bind('usersgroup_delete');
 
+// Delete user of group
+$app->delete('/api/user/group/delete/{id}', "appCompta\Controller\User_groupController::deleteUserOfGroup")->bind('userOfgroup_delete');
+
+/*********************************************************************************************************
+************************** Get, create, edit and delete for depense **************************************
+**************************                                          **************************************
+*********************************************************************************************************/
+
 // Get all depense
 $app->get('/api/depense', "appCompta\Controller\DepensesController::getAllDepenses")->bind('depense_api');
 
@@ -43,7 +58,7 @@ $app->get('/api/depenses/{id}', "appCompta\Controller\DepensesController::getOne
 $app->post('/api/depense/create', "appCompta\Controller\DepensesController::createDepenses")->bind('depenses_create');
 
 // Edit depense
-$app->put('/api/depense/edit/{id}', "appCompta\Controller\DepensesController::editDepenses")->bind('usersgroup_edit');
+$app->put('/api/depense/edit/{id}', "appCompta\Controller\DepensesController::editDepenses")->bind('depense_edit');
 
 // Delete depense
 $app->delete('/api/depense/delete/{id}', "appCompta\Controller\DepensesController::deleteDepenses")->bind('depense_delete');
