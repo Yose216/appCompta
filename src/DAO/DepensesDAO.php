@@ -25,7 +25,7 @@ class DepensesDAO extends DAO {
         if ($row)
             return $this->buildDomainObject($row);
         else
-            throw new \Exception("No user_group matching id " . $id);
+            throw new \Exception("No Depense matching id " . $id);
     }
 
 	protected function buildDomainObject($row) {

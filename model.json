@@ -28,6 +28,7 @@ Add and edit depense
 {
 	"montant": "",
 	"payeurs": "",
+	"concernes": "",
 	"date": "0000-00-00 00:00:00",
 	"nombre concerner": "",
 	"description": ""

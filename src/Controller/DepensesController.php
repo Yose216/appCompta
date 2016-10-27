@@ -23,8 +23,8 @@ class DepensesController {
 			$responseData[] = array(
 				'Id' => $depense->getIddepenses(),
 				'montant' => $depense->getMontant(),
-				'concernes' => implode(", ", $concernesArray[$depense->getIddepenses()]),
 				'payeurs' => $depense->getPayeurs(),
+				'concernes' => implode(", ", $concernesArray[$depense->getIddepenses()]),
 				'date' => $depense->getDatedep()->format('d-m-Y'),
 				'nombre concerner' => $depense->getNbconcerne(),
 				'description' => $depense->getDescription()
@@ -52,8 +52,8 @@ class DepensesController {
 		$responseData = array(
 			'Id' => $depenses->getIddepenses(),
 			'montant' => $depenses->getMontant(),
-			'concernes' => implode(", ", $concernesArray[$depenses->getIddepenses()]),
 			'payeurs' => $depenses->getPayeurs(),
+			'concernes' => implode(", ", $concernesArray[$depenses->getIddepenses()]),
 			'date' => $depenses->getDatedep()->format('d-m-Y'),
 			'nombre concerner' => $depenses->getNbconcerne(),
 			'description' => $depenses->getDescription()
@@ -78,10 +78,16 @@ class DepensesController {
 		$depenses->setDescription($request->request->get('description'));
 		$app['dao.depenses']->save($depenses);
 
+		$concernes = new Concernes();
+        $concernes->setIddepenses($depenses->getIddepenses());
+        $concernes->setIdusers($request->request->get('concernes'));
+		$app['dao.concernes']->save($concernes);
+
 		$responseData = array(
 			'Id' => $depenses->getIddepenses(),
 			'montant' => $depenses->getMontant(),
 			'payeurs' => $depenses->getPayeurs(),
+			'concernes' => $concernes->getIdusers(),
 			'date' => $depenses->getDatedep()->format('d-m-Y'),
 			'nombre concerner' => $depenses->getNbconcerne(),
 			'description' => $depenses->getDescription()
@@ -93,6 +99,7 @@ class DepensesController {
 	// Edit
 	public function editDepenses($id, Request $request, Application $app) {
 		$depenses = $app['dao.depenses']->find($id);
+		$concernes = $app['dao.concernes']->findAll();
 
 		$depenses->setMontant($request->request->get('montant'));
 		$depenses->setPayeurs($request->request->get('payeurs'));
@@ -101,10 +108,16 @@ class DepensesController {
 		$depenses->setDescription($request->request->get('description'));
 		$app['dao.depenses']->save($depenses);
 
+		$concernes = new Concernes();
+        $concernes->setIddepenses($depenses->getIddepenses());
+        $concernes->setIdusers($request->request->get('concernes'));
+		$app['dao.concernes']->save($concernes);
+
 		$responseData = array(
 			'Id' => $depenses->getIddepenses(),
 			'montant' => $depenses->getMontant(),
 			'payeurs' => $depenses->getPayeurs(),
+			'concernes' => $concernes->getIdusers(),
 			'date' => $depenses->getDatedep()->format('d-m-Y'),
 			'nombre concerner' => $depenses->getNbconcerne(),
 			'description' => $depenses->getDescription()

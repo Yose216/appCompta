@@ -5,6 +5,7 @@ use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use appCompta\Domain\User;
 use appCompta\Domain\Users_has_user_group;
+use appCompta\Domain\Concernes;
 
 class UserController {
 
@@ -75,14 +76,12 @@ class UserController {
 		$user->setRole($request->request->get('userrole'));
 		$user->setPassword($request->request->get('userpwd'));
 		$user->setSalt($request->request->get('usersalt'));
+		$user = $app['dao.user']->save($user);
 
 		// Set the parametre for the new Users_has_user_group
 		$user_has_group = new Users_has_user_group();
 		$user_has_group->setUserid($user->getId());
 		$user_has_group->setIdusergroup($request->request->get('idusergroup'));
-
-		//Save the parametre
-		$user = $app['dao.user']->save($user);
 		$app['dao.user_has_user_group']->save($user_has_group);
 		
 		// Response of the create request
@@ -106,6 +105,7 @@ class UserController {
 		$user->setUsercolor($request->request->get('usercolor'));
 		$user->setRole($request->request->get('userrole'));
 		$user->setPassword($request->request->get('userpwd'));
+		$app['dao.user']->save($user);
 
 		// for user_has_group
 			//CHECK IF ALREADY EXISTS
@@ -115,8 +115,6 @@ class UserController {
 		$user_has_group = new Users_has_user_group();
 		$user_has_group->setUserid($user->getId());
 		$user_has_group->setIdusergroup($request->request->get('idusergroup'));
-
-		$app['dao.user']->save($user);
 		$app['dao.user_has_user_group']->save($user_has_group);
 
 		$responseData = array(
@@ -132,13 +130,11 @@ class UserController {
 	
 	// Delete user
 	public function deleteUser($id, Request $request, Application $app) {
+		$app['dao.concernes']->delete($id);
+		$app['dao.user_has_user_group']->delete($id);
 		$app['dao.user']->delete($id);
 		return $app->json('No content', 204);
 	}
-	
-	// Add a user in group 
-	public function addUserInGroup(Request $request, Application $app) {
-		// todo
-	}
+
 	
 }

@@ -33,4 +33,9 @@ class ConcernesDAO extends DAO {
 
         $this->getDb()->insert('concernes', $concernesData);
     }
+
+	public function delete($id) {
+        // Delete the user
+        $this->getDb()->delete('concernes', array('id_users' => $id));
+    }
 }
