@@ -9,13 +9,17 @@ use appCompta\Domain\Users_has_user_group;
 
 
 class User_groupController {
+
 	// Get all groups
 	public function getAllGroup(Application $app) {
 		$user_group = $app['dao.user_group']->findAll();
 		$user_has_group = $app['dao.user_has_user_group']->findAll();
 		$responseData = array();
-		$user2GroupArray= [];
 
+		/* Converts $user_has_group to an array $user2GroupArray having structure :
+		*	[groupId => [UserId], groupId2 => [UserId2]]
+		*/
+		$user2GroupArray= [];
 		foreach($user_has_group as $obj){
 			if(! array_key_exists($obj->getIdusergroup(), $user2GroupArray)){
 				$user2GroupArray[$obj->getIdusergroup()] = [];
@@ -41,6 +45,9 @@ class User_groupController {
 			$app->abort(404, 'User not exist');
 		}
 
+		/* Converts $user_has_group to an array $user2GroupArray having structure :
+		*	[groupId => [UserId], groupId2 => [UserId2]]
+		*/
 		$user2GroupArray= [];
 		foreach($user_has_group as $obj){
 			if(! array_key_exists($obj->getIdusergroup(), $user2GroupArray)){
@@ -52,7 +59,7 @@ class User_groupController {
 		$responseData = array(
 			'Id' => $user_group->getId(),
 			'groupname' => $user_group->getGroupname(),
-			'userid' => implode(", ", $user2GroupArray[$user_group->getId()])
+			'userid' => implode(", ", $user2GroupArray[$user_group->getId()])// Convert array => string
 		);
 		return $app->json($responseData);
 	}
@@ -66,6 +73,9 @@ class User_groupController {
 		$user_group = new User_group();
 		$user_group->setGroupname($request->request->get('groupname'));
 		$app['dao.user_group']->save($user_group);
+
+		// add the content of request in log
+		error_log(print_r($user_group, true));
 
 		$responseData = array(
 			'Id' => $user_group->getId(),
@@ -81,6 +91,9 @@ class User_groupController {
 
 		$user_group->setGroupname($request->request->get('groupname'));
 		$app['dao.user_group']->save($user_group);
+
+		// add the content of request in log
+		error_log(print_r($user_group, true));
 
 		$responseData = array(
 			'Id' => $user_group->getId(),
@@ -98,6 +111,7 @@ class User_groupController {
 		return $app->json('No content', 204);
 	}
 
+	// delete user in group
 	public function deleteUserOfGroup($id, Request $request, Application $app) {
 		$app['dao.user_has_user_group']->delete($id);
 

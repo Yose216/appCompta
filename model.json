@@ -1,5 +1,4 @@
 Add user
-
 {
 	"username": "",
 	"usercolor": "",
@@ -10,7 +9,6 @@ Add user
 }
 
 Add usergroup
-
 {
 	"groupname": ""
 }
@@ -35,5 +33,4 @@ Add and edit depense
 }
 
 add error
-
 $app['monolog']->addError(/* TO DO */);

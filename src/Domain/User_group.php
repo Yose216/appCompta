@@ -3,21 +3,9 @@
 namespace appCompta\Domain;
 
 class User_group {
-	/**
-     * User Group id.
-     *
-     * @var integer
-     */
+
     private $id;
-
-    /**
-     * Group name.
-     *
-     * @var string
-     */
     private $groupName;
-
-
 
     public function getId() {
         return $this->id;

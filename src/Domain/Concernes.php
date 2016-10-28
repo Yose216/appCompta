@@ -5,7 +5,6 @@ namespace appCompta\Domain;
 class Concernes {
 
 	private $id_depenses;
-
 	private $id_users;
 
 	public function getIddepenses() {

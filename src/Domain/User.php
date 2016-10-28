@@ -6,47 +6,13 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class User implements UserInterface
 {
-   /**
-     * User id.
-     *
-     * @var integer
-     */
+
     private $id;
-	
-	/**
-     * User name.
-     *
-     * @var string
-     */
     private $userName;
-	
-	/**
-     * User color.
-     *
-     * @var string
-     */
     private $userColor;
-	
-	/**
-     * Role.
-     * Values : ROLE_USER or ROLE_ADMIN.
-	 *
-     * @var string
-     */
+    //Values : ROLE_USER or ROLE_ADMIN.
     private $userRole;
-	
-	/**
-     * User password.
-     *
-     * @var string
-     */
     private $userPwd;
-	
-	/**
-     * User salt.
-     *
-     * @var string
-     */
     private $salt;
 	
 	public function getId() {
@@ -57,9 +23,6 @@ class User implements UserInterface
         $this->id = $id;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getUsername() {
         return $this->userName;
     }
@@ -84,9 +47,6 @@ class User implements UserInterface
         $this->userRole = $userRole;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getRoles() {
         return array($this->getRole());
     }
@@ -110,5 +70,4 @@ class User implements UserInterface
 	public function eraseCredentials() {
         // Nothing to do here
     }
-	
 }

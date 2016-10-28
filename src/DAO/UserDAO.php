@@ -11,7 +11,7 @@ use appCompta\Domain\User;
 class UserDAO extends DAO implements UserProviderInterface
 {
 	
-	/**
+	/*
      * Returns a list of all users, sorted by role and name.
      *
      * @return array A list of all users.
@@ -29,7 +29,7 @@ class UserDAO extends DAO implements UserProviderInterface
         return $entities;
     }
 	
-    /**
+    /*
      * Returns a user matching the supplied id.
      *
      * @param integer $id The user id.
@@ -46,9 +46,6 @@ class UserDAO extends DAO implements UserProviderInterface
             throw new \Exception("No user matching id " . $id);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function loadUserByUsername($userName)
     {
         $sql = "select * from users where user_name=?";
@@ -60,9 +57,6 @@ class UserDAO extends DAO implements UserProviderInterface
             throw new UsernameNotFoundException(sprintf('User "%s" not found.', $userName));
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function refreshUser(UserInterface $user)
     {
         $class = get_class($user);
@@ -72,15 +66,12 @@ class UserDAO extends DAO implements UserProviderInterface
         return $this->loadUserByUsername($user->getUsername());
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function supportsClass($class)
     {
         return 'appCompta\Domain\User' === $class;
     }
 
-    /**
+    /*
      * Creates a User object based on a DB row.
      *
      * @param array $row The DB row containing User data.
@@ -97,7 +88,7 @@ class UserDAO extends DAO implements UserProviderInterface
         return $user;
     }
 	
-	/**
+	/*
      * Saves a user into the database.
      *
      * @param \appCompta\Domain\User $user The user to save
@@ -133,5 +124,4 @@ class UserDAO extends DAO implements UserProviderInterface
         // Delete the user
         $this->getDb()->delete('users', array('user_id' => $id));
     }
-
 }

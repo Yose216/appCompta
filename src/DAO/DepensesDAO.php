@@ -43,7 +43,7 @@ class DepensesDAO extends DAO {
         $depenseData = array(
             'montant' => $depenses->getMontant(),
 			'payeurs' => $depenses->getPayeurs(),
-			'date' => $depenses->getDatedep()->format('Y-m-d H:i:s'),
+			'date' => $depenses->getDatedep()->format('Y-m-d H:i:s'),// Change the format of date
 			'nbConcerne' => $depenses->getNbconcerne(),
 			'description' => $depenses->getDescription()
             );
@@ -51,7 +51,8 @@ class DepensesDAO extends DAO {
         if ($depenses->getIddepenses()) {
             // The user has already been saved : update it
             $this->getDb()->update('depenses', $depenseData, array('id_depenses' => $depenses->getIddepenses()));
-        } else {
+        }
+		else {
             // The user has never been saved : insert it
             $this->getDb()->insert('depenses', $depenseData);
             // Get the id of the newly created user and set it on the entity.
@@ -63,5 +64,4 @@ class DepensesDAO extends DAO {
 	public function delete($id) {
         $this->getDb()->delete('depenses', array('id_depenses' => $id));
     }
-
 }

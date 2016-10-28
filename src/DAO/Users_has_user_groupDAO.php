@@ -29,19 +29,18 @@ class Users_has_user_groupDAO extends DAO {
         $userHasUserGroupData = array(
             'user_id' => $users_has_user_group->getUserid(),
 			'id_user_group' => $users_has_user_group->getIdusergroup()
-            );
+        );
 
         $this->getDb()->insert('users_has_user_group', $userHasUserGroupData);
     }
 	
 	public function delete($id) {
-        // Delete the user
+        // Delete users_has_user_group whith the user_id
         $this->getDb()->delete('users_has_user_group', array('user_id' => $id));
     }
 
 	public function deleteUserGroup($id) {
-        // Delete the user
+        // Delete the users_has_user_group whith the id_user_group
         $this->getDb()->delete('users_has_user_group', array('id_user_group' => $id));
     }
-
 }

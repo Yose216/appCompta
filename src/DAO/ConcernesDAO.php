@@ -29,7 +29,7 @@ class ConcernesDAO extends DAO {
         $concernesData = array(
             'id_depenses' => $concernes->getIddepenses(),
 			'id_users' => $concernes->getIdusers()
-            );
+        );
 
         $this->getDb()->insert('concernes', $concernesData);
     }

@@ -44,6 +44,10 @@ class UserController {
 			$app->abort(404, 'User not exist');
 		}
 
+		/*
+		* Converts $user_has_group to an array $user2GroupArray having structure :
+		* [UserId => [groupId], UserID2 => [groupeId2]]
+		*/
 		$user2GroupArray= [];
 		foreach($user_has_group as $obj){
 			if(! array_key_exists($obj->getUserid(), $user2GroupArray)){
@@ -56,7 +60,7 @@ class UserController {
 			'Id' => $user->getId(),
 			'username' => $user->getUsername(),
 			'usercolor' => $user->getUsercolor(),
-			'usergroup' => implode(", ", $user2GroupArray[$user->getId()])
+			'usergroup' => implode(", ", $user2GroupArray[$user->getId()])//Convert array in string
 		);
 		return $app->json($responseData);
 	}
@@ -69,8 +73,12 @@ class UserController {
 		if (!$request->request->has('usercolor')) {
 			return $app->json('Missing parameter: usercolor', 400);
 		}
+		if (!$request->request->has('idusergroup')) {
+			return $app->json('Missing parameter: idusergroup', 400);
+		}
 
-		$user = new User(); // Set the parametre for the new user
+		// Set the parametre for the new user
+		$user = new User();
 		$user->setUsername($request->request->get('username'));
 		$user->setUsercolor($request->request->get('usercolor'));
 		$user->setRole($request->request->get('userrole'));
@@ -84,6 +92,10 @@ class UserController {
 		$user_has_group->setIdusergroup($request->request->get('idusergroup'));
 		$app['dao.user_has_user_group']->save($user_has_group);
 		
+		// Add the content of request in log
+		error_log(print_r($user, true));
+		error_log(print_r($user_has_group, true));
+
 		// Response of the create request
 		$responseData = array(
 			'Id' => $user->getId(),
@@ -117,6 +129,10 @@ class UserController {
 		$user_has_group->setIdusergroup($request->request->get('idusergroup'));
 		$app['dao.user_has_user_group']->save($user_has_group);
 
+		// Add the content of request in log
+		error_log(print_r($user, true));
+		error_log(print_r($user_has_group, true));
+
 		$responseData = array(
 			'Id' => $user->getId(),
 			'username' => $user->getUsername(),
@@ -130,11 +146,9 @@ class UserController {
 	
 	// Delete user
 	public function deleteUser($id, Request $request, Application $app) {
-		$app['dao.concernes']->delete($id);
-		$app['dao.user_has_user_group']->delete($id);
-		$app['dao.user']->delete($id);
+		$app['dao.concernes']->delete($id);// delete user in table concernes
+		$app['dao.user_has_user_group']->delete($id);// delete user in table user_has_user_group
+		$app['dao.user']->delete($id);// delete user in table user
 		return $app->json('No content', 204);
 	}
-
-	
 }

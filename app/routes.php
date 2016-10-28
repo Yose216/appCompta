@@ -12,13 +12,13 @@ $app->get('/api/users', "appCompta\Controller\UserController::getAllUsers")->bin
 $app->get('/api/user/{id}', "appCompta\Controller\UserController::getOneUser")->bind('user_api');
 
 // Create user
-$app->post('/api/users/create', "appCompta\Controller\UserController::createUser")->bind('user_create');
+$app->post('/admin/api/users/create', "appCompta\Controller\UserController::createUser")->bind('user_create');
 
 // Edit user
-$app->post('/api/users/edit/{id}', "appCompta\Controller\UserController::editUser")->bind('user_edit');
+$app->post('/admin/api/users/edit/{id}', "appCompta\Controller\UserController::editUser")->bind('user_edit');
 
 // Delete user
-$app->delete('/api/user/delete/{id}', "appCompta\Controller\UserController::deleteUser")->bind('user_delete');
+$app->delete('/admin/api/user/delete/{id}', "appCompta\Controller\UserController::deleteUser")->bind('user_delete');
 
 /*********************************************************************************************************
 ************************** Get, create, edit and delete for group ****************************************

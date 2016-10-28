@@ -3,18 +3,8 @@
 namespace appCompta\Domain;
 
 class Users_has_user_group {
-	/**
-     * user id.
-     *
-     * @var integer
-     */
-    private $userId;
 
-    /**
-     * id user group.
-     *
-     * @var integer
-     */
+    private $userId;
     private $idUserGroup;
 
     public function getUserid() {
@@ -32,5 +22,4 @@ class Users_has_user_group {
     public function setIdusergroup($idUserGroup) {
         $this->idUserGroup = $idUserGroup;
     }
-
 }
