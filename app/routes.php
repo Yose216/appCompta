@@ -32,16 +32,16 @@ $app->get('/api/usersgroup', "appCompta\Controller\User_groupController::getAllG
 $app->get('/api/usergroup/{id}', "appCompta\Controller\User_groupController::getOneUserGroup")->bind('usergroup_api');
 
 // Create group
-$app->post('/api/usersgroup/create', "appCompta\Controller\User_groupController::createUserGroup")->bind('usersgroup_create');
+$app->post('/admin/api/usersgroup/create', "appCompta\Controller\User_groupController::createUserGroup")->bind('usersgroup_create');
 
 // Edit group
-$app->put('/api/usersgroup/edit/{id}', "appCompta\Controller\User_groupController::editUserGroup")->bind('usersgroup_edit');
+$app->put('/admin/api/usersgroup/edit/{id}', "appCompta\Controller\User_groupController::editUserGroup")->bind('usersgroup_edit');
 
 // Delete group
-$app->delete('/api/usersgroup/delete/{id}', "appCompta\Controller\User_groupController::deleteUserGroup")->bind('usersgroup_delete');
+$app->delete('/admin/api/usersgroup/delete/{id}', "appCompta\Controller\User_groupController::deleteUserGroup")->bind('usersgroup_delete');
 
 // Delete user of group
-$app->delete('/api/user/group/delete/{id}', "appCompta\Controller\User_groupController::deleteUserOfGroup")->bind('userOfgroup_delete');
+$app->delete('/admin/api/user/group/delete/{id}', "appCompta\Controller\User_groupController::deleteUserOfGroup")->bind('userOfgroup_delete');
 
 /*********************************************************************************************************
 ************************** Get, create, edit and delete for depense **************************************
@@ -55,13 +55,13 @@ $app->get('/api/depense', "appCompta\Controller\DepensesController::getAllDepens
 $app->get('/api/depenses/{id}', "appCompta\Controller\DepensesController::getOneDepenses")->bind('depenses_api');
 
 // Create depense
-$app->post('/api/depense/create', "appCompta\Controller\DepensesController::createDepenses")->bind('depenses_create');
+$app->post('/admin/api/depense/create', "appCompta\Controller\DepensesController::createDepenses")->bind('depenses_create');
 
 // Edit depense
-$app->put('/api/depense/edit/{id}', "appCompta\Controller\DepensesController::editDepenses")->bind('depense_edit');
+$app->put('/admin/api/depense/edit/{id}', "appCompta\Controller\DepensesController::editDepenses")->bind('depense_edit');
 
 // Delete depense
-$app->delete('/api/depense/delete/{id}', "appCompta\Controller\DepensesController::deleteDepenses")->bind('depense_delete');
+$app->delete('/admin/api/depense/delete/{id}', "appCompta\Controller\DepensesController::deleteDepenses")->bind('depense_delete');
 
 // Delete concernes
-$app->delete('/api/depense/concernes/delete/{id}', "appCompta\Controller\DepensesController::deleteConcernes")->bind('concernes_delete');
+$app->delete('/admin/api/depense/concernes/delete/{id}', "appCompta\Controller\DepensesController::deleteConcernes")->bind('concernes_delete');
