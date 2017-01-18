@@ -45,7 +45,15 @@ class UserDAO extends DAO implements UserProviderInterface
         else
             throw new \Exception("No user matching id " . $id);
     }
-
+		
+	public function login($username, $password) {
+		$sql = "SELECT * FROM users WHERE user_name =? AND user_pwd =?";
+		$result = $this->getDb()->query($sql,$username,$password); 
+		if(!empty($result)) {
+			return $result;
+		}
+	}
+	
     public function loadUserByUsername($userName)
     {
         $sql = "select * from users where user_name=?";

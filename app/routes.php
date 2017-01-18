@@ -65,3 +65,6 @@ $app->delete('/admin/api/depense/delete/{id}', "appCompta\Controller\DepensesCon
 
 // Delete concernes
 $app->delete('/admin/api/depense/concernes/delete/{id}', "appCompta\Controller\DepensesController::deleteConcernes")->bind('concernes_delete');
+
+//login
+$app->post('/login', "appCompta\Controller\AdminController::login")->bind('login');
